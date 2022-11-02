@@ -24,8 +24,24 @@ body {
 }
 
 .pad {
+  --padsize: 0px;
+  --divsize: 0px;
+}
+
+.pad {
   height: 650px;
   width: 650px;
   background-color: black;
   box-shadow: 7px 7px 5px #0e0c1c;
+  gap: 1px;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 0 auto;
+}
+
+.pad >* {
+  background-color: white;
+  height: var(--divsize);
+  width: var(--divsize);
+  flex: 0 0 auto;
 }
