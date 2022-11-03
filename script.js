@@ -14,3 +14,21 @@ function padDensity (density) {
 }
 
 padDensity(16);
+
+const toolsPanel = document.querySelector(".tools");
+const toolsCaseImg = document.querySelector(".tools img");
+
+let executed = false;
+function openToolsCase () {
+    toolsPanel.style.setProperty("justify-content", "space-between");
+
+    const tools = ["PENSIL", "BACKGROUND", "GRID", "ERASER", "CLEAN"];
+    tools.forEach (tool => {
+        const item = document.createElement("div");
+        item.textContent = `${tool}`;
+        toolsPanel.appendChild(item);
+        item.classList.add("tool");
+    })
+}
+
+toolsCaseImg.addEventListener("click", openToolsCase, {once: true});

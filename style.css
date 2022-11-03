@@ -23,6 +23,12 @@ body {
   overflow: visible;
 }
 
+.tool {
+  font-size: 26px;
+  color: rgba(255, 201, 201, 0.87);
+  text-align: center;
+}
+
 .pad {
   --padsize: 0px;
   --divsize: 0px;
