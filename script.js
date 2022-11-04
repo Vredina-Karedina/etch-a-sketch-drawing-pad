@@ -1,5 +1,6 @@
 "Use strict"
 
+// Fill the pad with divs according to density
 const pad = document.querySelector(".pad");
 const padSize = pad.clientHeight;
 
@@ -12,23 +13,16 @@ function padDensity (density) {
         i++;
     }     
 }
-
 padDensity(16);
 
-const toolsPanel = document.querySelector(".tools");
+const tools = document.querySelectorAll(".tool");
 const toolsCaseImg = document.querySelector(".tools img");
 
-let executed = false;
-function openToolsCase () {
-    toolsPanel.style.setProperty("justify-content", "space-between");
+// Initially hide tools
+tools.forEach(tool => tool.style.display = "none");
 
-    const tools = ["PENSIL", "BACKGROUND", "GRID", "ERASER", "CLEAN"];
-    tools.forEach (tool => {
-        const item = document.createElement("div");
-        item.textContent = `${tool}`;
-        toolsPanel.appendChild(item);
-        item.classList.add("tool");
-    })
+// Show tools by click on "Tools case" image
+toolsCaseImg.addEventListener("click", showTools);
+function showTools () {
+    tools.forEach(tool => tool.style.display = "block");
 }
-
-toolsCaseImg.addEventListener("click", openToolsCase, {once: true});
