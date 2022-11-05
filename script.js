@@ -26,3 +26,13 @@ toolsCaseImg.addEventListener("click", showTools);
 function showTools () {
     tools.forEach(tool => tool.style.display = "block");
 }
+
+// Show and close dialog
+tools.forEach(tool => {tool.addEventListener("click", toggleDialog)});
+function toggleDialog () {
+    const thisDialog = document.querySelector(`.${this.textContent.toLowerCase()}-dialog`);
+    thisDialog.showModal();
+
+    const closeButton = document.querySelector(`.${this.textContent.toLowerCase()}-dialog .close-button`);
+    closeButton.addEventListener("click", () => thisDialog.close());
+}
