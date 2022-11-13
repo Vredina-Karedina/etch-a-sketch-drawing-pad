@@ -45,6 +45,7 @@ body {
   font-size: 26px;
   color: rgba(255, 201, 201, 0.87);
   text-align: center;
+  cursor: pointer;
 }
 
 .tool:hover {
@@ -53,18 +54,19 @@ body {
 }
 
 dialog {
+  padding: 0;
   border: 0;
-  width: 300px;
+  width: 200px;
   height: fit-content;
 }
 
 dialog::backdrop {
   background: black;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 .pencil-dialog {
-  left: -5%;
+  left: -15%;
   top: 15%;
 }
 
@@ -76,6 +78,55 @@ dialog::backdrop {
 .grid-dialog {
   left: -5%;
   top: 45%;
+}
+
+.dialog-head {
+  padding: 0 20px;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(197, 197, 197);
+  font-size: 17px;
+  font-weight: bold;
+  color: #1e1939;
+}
+
+.close-button {
+  cursor: pointer;
+  color: #5749a3;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.close-button:hover {
+  color: #1e1939;
+  transform: scale(1.15);
+}
+
+.dialog-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: 10px 20px;
+}
+
+.dialog-body div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.color {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 0;
 }
 
 .pad {

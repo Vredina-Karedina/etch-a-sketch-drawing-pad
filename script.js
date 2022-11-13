@@ -36,3 +36,28 @@ function toggleDialog () {
     const closeButton = document.querySelector(`.${this.textContent.toLowerCase()}-dialog .close-button`);
     closeButton.addEventListener("click", () => thisDialog.close());
 }
+
+// Take pencil color
+const pencils = document.querySelectorAll(".color");
+let pencilColor = "#000000";
+
+pencils.forEach(pencil => pencil.addEventListener("change", changePencilColor));
+function changePencilColor () {
+    pencilColor = this.style.setProperty("--color", `${this.value}`);
+    pencilColor = this.value;
+}
+
+// Draw on the pad
+const padCell = document.querySelectorAll(".pad div");
+padCell.forEach(cell => cell.addEventListener("mousemove", draw));
+padCell.forEach(cell => cell.addEventListener("mousedown", () => isDrawing = true));
+padCell.forEach(cell => cell.addEventListener("mouseup", () => isDrawing = false));
+// padCell.forEach(cell => cell.addEventListener("click", (e) => {
+//     if (e.detail >= 2) isDrawing = false;
+// }));
+let isDrawing = false;
+
+function draw (e) {
+    if (!isDrawing) return;
+    this.style.backgroundColor=`${pencilColor}`;
+}
