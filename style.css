@@ -1,0 +1,41 @@
+/*============
+global styles
+============*/
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #1e1939;
+    overflow: hidden;
+}
+
+/*============
+    layout
+============*/
+
+/* tools section */
+.tools {
+    height: 650px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+  
+.tools img {
+    height: 300px;
+    width: auto;
+    overflow: visible;
+}
+
+/* pad section */
+.pad {
+    height: var(--padsize);
+    width: var(--padsize);
+    background-color: black;
+    box-shadow: 7px 7px 5px #0e0c1c;
+}
