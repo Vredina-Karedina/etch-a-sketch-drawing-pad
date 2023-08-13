@@ -12,6 +12,11 @@ body {
     overflow: hidden;
 }
 
+:root {
+    --padsize: 0px;
+    --cellsize: 0px;
+}  
+
 /*============
     layout
 ============*/
@@ -36,6 +41,16 @@ body {
 .pad {
     height: var(--padsize);
     width: var(--padsize);
-    background-color: black;
+    background-color: rgb(220, 220, 220);
     box-shadow: 7px 7px 5px #0e0c1c;
-}
+    display: grid;
+    grid-template-columns: repeat(16, minmax(auto, auto));
+    gap: 1px;
+  }
+  
+  .pad >* {
+    background-color: rgb(255, 255, 255);
+    height: var(--cellsize);
+    width: var(--cellsize);
+  }
+  
