@@ -10,6 +10,7 @@ body {
     width: 100vw;
     background-color: #1e1939;
     overflow: hidden;
+    font-family: Tahoma, sans-serif;
 }
 
 :root {
@@ -35,8 +36,21 @@ body {
     height: 300px;
     width: auto;
     overflow: visible;
+    cursor: pointer;
 }
 
+.tool {
+    display: none;
+    font-size: 26px;
+    color: rgba(255, 201, 201, 0.87);
+    text-align: center;
+    cursor: pointer;
+  }
+  
+.open {
+    display: block;
+}
+  
 /* pad section */
 .pad {
     height: var(--padsize);
@@ -52,5 +66,6 @@ body {
     background-color: rgb(255, 255, 255);
     height: var(--cellsize);
     width: var(--cellsize);
+    cursor: pointer;
   }
   

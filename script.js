@@ -17,5 +17,14 @@ function updateDensity() {
         i++;
     }
 }
-
 updateDensity();
+
+// ========== Show tools by click on "Tools case" image ========== //
+
+const tools = document.querySelectorAll(".tool");
+const toolsCaseImg = document.querySelector(".tools img");
+toolsCaseImg.addEventListener("click", toggleToolsMenu);
+
+function toggleToolsMenu () {
+    tools.forEach(tool => tool.classList.toggle("open"));
+}
