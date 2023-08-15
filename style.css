@@ -11,6 +11,7 @@ body {
     background-color: #1e1939;
     overflow: hidden;
     font-family: Tahoma, sans-serif;
+    user-select: none;
 }
 
 :root {
@@ -78,6 +79,7 @@ dialog {
     border: 0;
     width: 300px;
     height: fit-content;
+    user-select: none;
 }
   
 .dialog-head {

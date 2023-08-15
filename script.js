@@ -41,3 +41,18 @@ function toggleDialog () {
     const buttonClose = document.querySelector(`.${this.textContent.toLowerCase()}-dialog .close-button`);
     buttonClose.addEventListener("click", () => thisDialog.close());
 }
+
+// ========== Drawing functionality ========== //
+
+let pencilColor = "#000000";
+const gridCells = document.querySelectorAll(".pad div");
+
+gridCells.forEach(cell => cell.addEventListener("mousemove", draw));
+gridCells.forEach(cell => cell.addEventListener("mousedown", () => drawingProcess = true));
+gridCells.forEach(cell => cell.addEventListener("mouseup", () => drawingProcess = false));
+let drawingProcess = false;
+
+function draw () {    
+    if (!drawingProcess) return;
+    this.style.backgroundColor = pencilColor;
+}
