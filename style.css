@@ -47,7 +47,7 @@ body {
     cursor: pointer;
   }
   
-.open {
+  .open {
     display: block;
 }
   
@@ -60,12 +60,55 @@ body {
     display: grid;
     grid-template-columns: repeat(16, minmax(auto, auto));
     gap: 1px;
-  }
+}
   
-  .pad >* {
+.pad >* {
     background-color: rgb(255, 255, 255);
     height: var(--cellsize);
     width: var(--cellsize);
-    cursor: pointer;
-  }
+}
+
+/*============
+  components
+============*/
+
+/* dialog */
+dialog {
+    padding: 0;
+    border: 0;
+    width: 300px;
+    height: fit-content;
+}
   
+.dialog-head {
+    padding: 0 20px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(197, 197, 197);
+    font-size: 19px;
+    font-weight: bold;
+    color: #1e1939;
+}
+
+.dialog-body {
+    font-size: 17px;
+    padding: 10px 20px;
+}
+  
+dialog::backdrop {
+    background: black;
+    opacity: 0.5;
+}
+  
+.close-button {
+    cursor: pointer;
+    color: #5749a3;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    background: none;
+}

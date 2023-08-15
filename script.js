@@ -28,3 +28,16 @@ toolsCaseImg.addEventListener("click", toggleToolsMenu);
 function toggleToolsMenu () {
     tools.forEach(tool => tool.classList.toggle("open"));
 }
+
+// ========== Tool dialog ========== //
+
+tools.forEach(tool => {tool.addEventListener("click", toggleDialog)});
+
+function toggleDialog () {
+    if (this.textContent === "Eraser" || this.textContent === "Clean") return;
+    const thisDialog = document.querySelector(`.${this.textContent.toLowerCase()}-dialog`);
+    thisDialog.showModal();
+
+    const buttonClose = document.querySelector(`.${this.textContent.toLowerCase()}-dialog .close-button`);
+    buttonClose.addEventListener("click", () => thisDialog.close());
+}
