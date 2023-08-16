@@ -44,16 +44,50 @@ function toggleDialog () {
 
 // ========== Pencil color selection ========== //
 
+// To switch between pencils "changePencil" function launch appropriate function from the array "pencilOptions"
+// The color for each cell calculates separately
+
 const gridCells = document.querySelectorAll(".pad div");
 let pencilColor = "#000000";
 
+const pencilOptions = [];
+
+// [ Solid ]
 const solidColorInput = document.querySelector("input[name=solid]");
+const solidRadioButton = document.querySelector(".solid");
 
-gridCells.forEach(cell => cell.addEventListener("mousedown", assignSolidColor));
-gridCells.forEach(cell => cell.addEventListener("mouseenter", assignSolidColor));
+pencilOptions["solid"] = function changeToSolid () {
+    gridCells.forEach(cell => cell.addEventListener("mousedown", assignSolidColor));
+    gridCells.forEach(cell => cell.addEventListener("mouseenter", assignSolidColor));
 
-function assignSolidColor() {
-    pencilColor = solidColorInput.value;
+    function assignSolidColor() {
+        pencilColor = solidColorInput.value;
+    }
+};
+// Handle solid color update by dialog color input change
+solidColorInput.addEventListener("change", () => {
+    if (solidRadioButton.checked) pencilOptions["solid"]();
+});
+
+// [ Rainbow ]
+pencilOptions["rainbow"] = function changeToRainbow () {
+    let hue = 0;
+    gridCells.forEach(cell => cell.addEventListener("mousedown", assignRainbowColor));
+    gridCells.forEach(cell => cell.addEventListener("mouseenter", assignRainbowColor));
+
+    function assignRainbowColor() {
+        pencilColor = `hsl(${hue}, 100%, 50%)`;
+        hue = hue+2;
+        if (hue>360) hue=0;
+    }
+}
+
+// Switch between menu options
+const pencils = document.querySelectorAll("input[name=color]");
+pencils.forEach(pencil => pencil.addEventListener("change", changePencil));
+
+function changePencil () {
+    pencilOptions[`${this.classList.value}`]();
 }
 
 // ========== Drawing functionality ========== //
