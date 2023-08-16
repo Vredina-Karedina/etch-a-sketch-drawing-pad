@@ -42,10 +42,21 @@ function toggleDialog () {
     buttonClose.addEventListener("click", () => thisDialog.close());
 }
 
-// ========== Drawing functionality ========== //
+// ========== Pencil color selection ========== //
 
-let pencilColor = "#000000";
 const gridCells = document.querySelectorAll(".pad div");
+let pencilColor = "#000000";
+
+const solidColorInput = document.querySelector("input[name=solid]");
+
+gridCells.forEach(cell => cell.addEventListener("mousedown", assignSolidColor));
+gridCells.forEach(cell => cell.addEventListener("mouseenter", assignSolidColor));
+
+function assignSolidColor() {
+    pencilColor = solidColorInput.value;
+}
+
+// ========== Drawing functionality ========== //
 
 gridCells.forEach(cell => cell.addEventListener("mousemove", draw));
 gridCells.forEach(cell => cell.addEventListener("mousedown", () => drawingProcess = true));

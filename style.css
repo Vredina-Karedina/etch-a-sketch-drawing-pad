@@ -98,6 +98,22 @@ dialog {
     font-size: 17px;
     padding: 10px 20px;
 }
+
+.dialog-body {
+    font-size: 17px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:stretch;
+    padding: 10px 20px;
+    accent-color: #5749a3;
+}
+  
+.dialog-body div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
   
 dialog::backdrop {
     background: black;
