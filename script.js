@@ -82,6 +82,17 @@ pencilOptions["rainbow"] = function changeToRainbow () {
     }
 }
 
+// [ Random ]
+pencilOptions['random'] = function changeToRandom () {
+    gridCells.forEach(cell => cell.addEventListener("mousedown", assignRandomColor));
+    gridCells.forEach(cell => cell.addEventListener("mouseenter", assignRandomColor));
+
+    function assignRandomColor() {
+        let hue = Math.floor(Math.random() * 359);
+        pencilColor = `hsl(${hue}, 100%, 50%)`;
+    }
+}
+
 // Switch between menu options
 const pencils = document.querySelectorAll("input[name=color]");
 pencils.forEach(pencil => pencil.addEventListener("change", changePencil));
