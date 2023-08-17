@@ -93,6 +93,42 @@ pencilOptions['random'] = function changeToRandom () {
     }
 }
 
+// [ Shade ]
+const shadeColorInput = document.querySelector("input[name=shade]");
+
+pencilOptions['shade'] = function changeToShade () {
+    gridCells.forEach(cell => cell.addEventListener("mousedown", assignShadeColor));
+    gridCells.forEach(cell => cell.addEventListener("mouseenter", assignShadeColor));
+
+    function assignShadeColor() {
+        // Transform cell color to rgba
+        const baseRgb = this.style.backgroundColor.slice(4, this.style.backgroundColor.length-1).split(", ");
+        const baseRgba = baseRgb.map(Number);
+        baseRgba.push(1);
+
+        // Transform shade input color to rgba
+        const red = parseInt(shadeColorInput.value.substring(1, 3), 16);
+        const green = parseInt(shadeColorInput.value.substring(3, 5), 16);
+        const blue = parseInt(shadeColorInput.value.substring(5, 7), 16);
+        const shadeRgba = [red, green, blue, 0.25];
+
+        // Combine base and shade colors
+        const mix = [];
+        mix[3] = 1 - (1 - shadeRgba[3]) * (1 - baseRgba[3]);
+        mix[0] = Math.round(
+            (shadeRgba[0] * shadeRgba[3] / mix[3])
+            + (baseRgba[0] * baseRgba[3] * (1 - shadeRgba[3]) / mix[3]));
+        mix[1] = Math.round(
+            (shadeRgba[1] * shadeRgba[3] / mix[3])
+            + (baseRgba[1] * baseRgba[3] * (1 - shadeRgba[3]) / mix[3]));
+        mix[2] = Math.round(
+            (shadeRgba[2] * shadeRgba[3] / mix[3])
+            + (baseRgba[2] * baseRgba[3] * (1 - shadeRgba[3]) / mix[3]));
+
+        pencilColor = `rgba(${mix[0]}, ${mix[1]}, ${mix[2]}, ${mix[3]})`;
+    }
+}
+
 // Switch between menu options
 const pencils = document.querySelectorAll("input[name=color]");
 pencils.forEach(pencil => pencil.addEventListener("change", changePencil));
