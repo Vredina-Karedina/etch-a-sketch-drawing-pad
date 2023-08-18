@@ -46,9 +46,9 @@ body {
     color: rgba(255, 201, 201, 0.87);
     text-align: center;
     cursor: pointer;
-  }
+}
   
-  .open {
+.open {
     display: block;
 }
   

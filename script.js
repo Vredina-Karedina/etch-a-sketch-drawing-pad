@@ -19,6 +19,17 @@ function updateDensity() {
 }
 updateDensity();
 
+// ========== Background update functionality ========== //
+
+const gridCells = document.querySelectorAll(".pad div");
+const backgroundDialogColorInput = document.querySelector(".background-color-input");
+backgroundDialogColorInput.addEventListener("change", updateBackground);
+
+function updateBackground () {
+    gridCells.forEach(cell => cell.style.backgroundColor = backgroundDialogColorInput.value);
+}
+updateBackground();
+
 // ========== Show tools by click on "Tools case" image ========== //
 
 const tools = document.querySelectorAll(".tool");
@@ -47,7 +58,6 @@ function toggleDialog () {
 // To switch between pencils "changePencil" function launch appropriate function from the array "pencilOptions"
 // The color for each cell calculates separately
 
-const gridCells = document.querySelectorAll(".pad div");
 let pencilColor = "#000000";
 
 const pencilOptions = [];
