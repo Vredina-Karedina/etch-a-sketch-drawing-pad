@@ -10,7 +10,7 @@ body {
     width: 100vw;
     background-color: #1e1939;
     overflow: hidden;
-    font-family: Tahoma, sans-serif;
+    font-family: Helvetica, Tahoma, sans-serif;
     user-select: none;
 }
 
