@@ -3,32 +3,43 @@
 // ========== Fill the pad with cells according to density ========== //
 
 const pad = document.querySelector(".pad");
+const gridContainer = document.querySelector(".grid-container");
 const body = document.querySelector("body");
+const densityRangeInput = document.querySelector('[type="range"]');
+const densityNumberInDialog = document.querySelector(".density");
 document.documentElement.style.setProperty("--padsize", `${body.clientHeight-100}px`);
 
 function updateDensity() {
-    const density = 16;
-    document.documentElement.style.setProperty("--cellsize", `${Math.floor(((body.clientHeight-100) - (density-1)) / density)}px`);
+    gridContainer.replaceChildren();
+
+    const density = densityRangeInput.value;
+    densityNumberInDialog.textContent = `${density}`;
+    document.documentElement.style.setProperty("--density", `${density}`);
+
+    document.documentElement.style.setProperty("--cellsize", `${((body.clientHeight-100) - (density-1)) / density}px`);
+    document.documentElement.style.setProperty("--grid-container", `${((body.clientHeight-100) / density)}px`);
 
     let i=0;
     while (i < density*density) {
         const cell = document.createElement("div");
-        pad.appendChild(cell);
+        gridContainer.appendChild(cell);
         i++;
     }
 }
-updateDensity();
 
 // ========== Background update functionality ========== //
 
-const gridCells = document.querySelectorAll(".pad div");
+let gridCells;
+function getCellsAccess() {
+    gridCells = document.querySelectorAll(".grid-container div");
+}
+
 const backgroundDialogColorInput = document.querySelector(".background-color-input");
 backgroundDialogColorInput.addEventListener("change", updateBackground);
 
 function updateBackground () {
     gridCells.forEach(cell => cell.style.backgroundColor = backgroundDialogColorInput.value);
 }
-updateBackground();
 
 // ========== Show tools by click on "Tools case" image ========== //
 
@@ -149,12 +160,25 @@ function changePencil () {
 
 // ========== Drawing functionality ========== //
 
-gridCells.forEach(cell => cell.addEventListener("mousemove", draw));
-gridCells.forEach(cell => cell.addEventListener("mousedown", () => drawingProcess = true));
-gridCells.forEach(cell => cell.addEventListener("mouseup", () => drawingProcess = false));
-let drawingProcess = false;
+function updateDrawing () {
+    gridCells.forEach(cell => cell.addEventListener("mousemove", draw));
+    gridCells.forEach(cell => cell.addEventListener("mousedown", () => drawingProcess = true));
+    gridCells.forEach(cell => cell.addEventListener("mouseup", () => drawingProcess = false));
+    let drawingProcess = false;
 
-function draw () {    
-    if (!drawingProcess) return;
-    this.style.backgroundColor = pencilColor;
+    function draw () {    
+        if (!drawingProcess) return;
+        this.style.backgroundColor = pencilColor;
+    }
+}
+
+// On density input change fill pad with cells of new density with selected backgroundColor
+densityRangeInput.addEventListener("input", updatePad);
+updatePad();
+
+function updatePad() {
+    updateDensity();
+    getCellsAccess();
+    updateBackground();
+    updateDrawing();
 }

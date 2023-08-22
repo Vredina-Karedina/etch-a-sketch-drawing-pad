@@ -13,19 +13,22 @@ body {
     font-family: Helvetica, Tahoma, sans-serif;
     user-select: none;
 }
-
+  
 :root {
     --padsize: 0px;
     --cellsize: 0px;
-}  
-
+    --density: 0;
+    --grid-color: gray;
+    --grid-container-size: 0px;
+}
+  
 /*============
     layout
 ============*/
 
 /* tools section */
 .tools {
-    height: 650px;
+    height: var(--padsize);
     width: 450px;
     display: flex;
     flex-direction: column;
@@ -39,7 +42,7 @@ body {
     overflow: visible;
     cursor: pointer;
 }
-
+    
 .tool {
     display: none;
     font-size: 26px;
@@ -47,30 +50,36 @@ body {
     text-align: center;
     cursor: pointer;
 }
-  
+
 .open {
     display: block;
 }
-  
+
 /* pad section */
 .pad {
     height: var(--padsize);
     width: var(--padsize);
-    background-color: rgb(220, 220, 220);
+    background-color: grey;
     box-shadow: 7px 7px 5px #0e0c1c;
+}
+
+.grid-container {
+    height: var(--grid-container-size);
+    width: var(--grid-container-size);
     display: grid;
-    grid-template-columns: repeat(16, minmax(auto, auto));
+    grid-template-columns: repeat(var(--density), 1fr);
     gap: 1px;
 }
-  
-.pad >* {
+
+.grid-container >* {
     background-color: rgb(255, 255, 255);
     height: var(--cellsize);
     width: var(--cellsize);
+    cursor: url(images/pencil.png) 0 70, pointer;
 }
 
 /*============
-  components
+components
 ============*/
 
 /* dialog */
@@ -81,7 +90,7 @@ dialog {
     height: fit-content;
     user-select: none;
 }
-  
+
 .dialog-head {
     padding: 0 20px;
     height: 40px;
@@ -96,11 +105,6 @@ dialog {
 
 .dialog-body {
     font-size: 17px;
-    padding: 10px 20px;
-}
-
-.dialog-body {
-    font-size: 17px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -108,19 +112,19 @@ dialog {
     padding: 10px 20px;
     accent-color: #5749a3;
 }
-  
+
 .dialog-body div {
-    height: 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-  
+
 dialog::backdrop {
     background: black;
     opacity: 0.5;
 }
-  
+
+/* button */
 .close-button {
     cursor: pointer;
     color: #5749a3;
@@ -130,4 +134,12 @@ dialog::backdrop {
     border: none;
     outline: none;
     background: none;
+}
+
+.color {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 0;
+    position: relative;
 }

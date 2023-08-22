@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </dialog>
-
+        
             <div class="tool">Background</div>
             <dialog class="background-dialog">
                 <div class="dialog-head">
@@ -67,12 +67,20 @@
                     <p>Grid settings</p>
                     <button class="close-button">&times;</button>
                 </div>
-                <div class="dialog-body">Grid menu</div>
+                <div class="dialog-body">
+                    <div>
+                        <div>Grid density</div>
+                        <input type="range" min="16" max="64" value="16">
+                        <div class="density"></div>
+                    </div>
+                </div>
             </dialog>
 
-            <div class="tool">Eraser</div>
-            <div class="tool">Clean</div>
+            <div class="tool" id="eraser">Eraser</div>
+            <div class="tool" id="clean">Clean</div>
+        </div>        
+        <div class="pad">
+            <div class="grid-container"></div>
         </div>
-        <div class="pad"></div>
     </body>
 </html>
