@@ -220,3 +220,8 @@ function toggleEraser () {
         quitEraser();
     }
 }
+
+// ========== Clean functionality ========== //
+
+const cleaner = document.querySelector("#clean");
+cleaner.addEventListener("click", updateBackground);
