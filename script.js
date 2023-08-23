@@ -182,3 +182,41 @@ function updatePad() {
     updateBackground();
     updateDrawing();
 }
+
+// ========== Eraser functionality ========== //
+
+const eraser = document.querySelector("#eraser");
+eraser.addEventListener("click", toggleEraser);
+toolsCaseImg.addEventListener("click", quitEraser);
+tools.forEach(tool => tool.addEventListener("click", function() {
+    if(tool.textContent !== "Eraser") quitEraser();
+}))
+
+function quitEraser () {
+    if (eraser.classList.value === "tool active") eraser.classList.value = "tool";
+    if (eraser.classList.value === "tool open active") eraser.classList.value = "tool open";
+
+    pencils.forEach(pencil => {
+        if (pencil.checked) {
+            pencilOptions[`${pencil.classList.value}`]();
+            updateDrawing();
+        }
+    })
+}
+
+function toggleEraser () {
+    eraser.classList.toggle("active");
+    if (eraser.classList.value === "tool open active") {
+        gridCells.forEach(cell => cell.addEventListener("mousemove", erase));
+        gridCells.forEach(cell => cell.addEventListener("mousedown", () => erasingProcess = true));
+        gridCells.forEach(cell => cell.addEventListener("mouseup", () => erasingProcess = false));
+        let erasingProcess = false;
+
+        function erase () {
+            if (!erasingProcess) return;
+            this.style.backgroundColor = backgroundDialogColorInput.value;
+        }
+    } else {
+        quitEraser();
+    }
+}
