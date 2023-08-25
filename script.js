@@ -52,16 +52,19 @@ function toggleToolsMenu () {
 }
 
 // ========== Tool dialog ========== //
-
 tools.forEach(tool => {tool.addEventListener("click", toggleDialog)});
 
 function toggleDialog () {
     if (this.textContent === "Eraser" || this.textContent === "Clean") return;
+    this.classList.add("active");
     const thisDialog = document.querySelector(`.${this.textContent.toLowerCase()}-dialog`);
     thisDialog.showModal();
 
     const buttonClose = document.querySelector(`.${this.textContent.toLowerCase()}-dialog .close-button`);
-    buttonClose.addEventListener("click", () => thisDialog.close());
+    buttonClose.addEventListener("click", () => {
+        thisDialog.close()
+        this.classList.remove("active");
+    });
 }
 
 // ========== Pencil color selection ========== //
@@ -193,9 +196,7 @@ tools.forEach(tool => tool.addEventListener("click", function() {
 }))
 
 function quitEraser () {
-    if (eraser.classList.value === "tool active") eraser.classList.value = "tool";
-    if (eraser.classList.value === "tool open active") eraser.classList.value = "tool open";
-
+    eraser.classList.remove("active");
     pencils.forEach(pencil => {
         if (pencil.checked) {
             pencilOptions[`${pencil.classList.value}`]();
@@ -224,4 +225,15 @@ function toggleEraser () {
 // ========== Clean functionality ========== //
 
 const cleaner = document.querySelector("#clean");
-cleaner.addEventListener("click", updateBackground);
+cleaner.addEventListener("click", toggleCleaner);
+
+function toggleCleaner () {
+    cleaner.classList.add("active");
+    updateBackground();
+    cleaner.addEventListener("transitionend", removeTransition);
+
+    function removeTransition (e) {
+        if (e.propertyName !== "transform") return;
+        cleaner.classList.remove("active");
+    }
+}
