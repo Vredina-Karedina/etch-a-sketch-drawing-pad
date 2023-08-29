@@ -7,7 +7,8 @@ const gridContainer = document.querySelector(".grid-container");
 const body = document.querySelector("body");
 const densityRangeInput = document.querySelector('[type="range"]');
 const densityNumberInDialog = document.querySelector(".density");
-document.documentElement.style.setProperty("--padsize", `${body.clientHeight-100}px`);
+const padSize = body.clientHeight-100;
+document.documentElement.style.setProperty("--padsize", `${padSize}px`);
 
 function updateDensity() {
     gridContainer.replaceChildren();
@@ -16,8 +17,7 @@ function updateDensity() {
     densityNumberInDialog.textContent = `${density}`;
     document.documentElement.style.setProperty("--density", `${density}`);
 
-    document.documentElement.style.setProperty("--cellsize", `${((body.clientHeight-100) - (density-1)) / density}px`);
-    document.documentElement.style.setProperty("--grid-container", `${((body.clientHeight-100) / density)}px`);
+    document.documentElement.style.setProperty("--cellsize", `${(padSize - density) / density}px`);
 
     let i=0;
     while (i < density*density) {

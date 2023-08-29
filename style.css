@@ -89,22 +89,23 @@ body {
 .pad {
   height: var(--padsize);
   width: var(--padsize);
-  background-color: grey;
-  box-shadow: 7px 7px 5px #0e0c1c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .grid-container {
-  height: var(--grid-container-size);
-  width: var(--grid-container-size);
   display: grid;
   grid-template-columns: repeat(var(--density), 1fr);
-  gap: 1px;
+  box-shadow: 7px 7px 5px #0e0c1c;
 }
 
 .grid-container >* {
   background-color: rgb(255, 255, 255);
   height: var(--cellsize);
   width: var(--cellsize);
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
   cursor: url(images/pencil.png) 0 70, pointer;
 }
 
