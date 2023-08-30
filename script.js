@@ -232,8 +232,7 @@ function toggleCleaner () {
     updateBackground();
     cleaner.addEventListener("transitionend", removeTransition);
 
-    function removeTransition (e) {
-        if (e.propertyName !== "transform") return;
+    function removeTransition () {
         cleaner.classList.remove("active");
     }
 }
